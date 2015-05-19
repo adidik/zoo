@@ -19,7 +19,14 @@ public class SearchEngineImpl implements SearchEngine {
         this.zoo = zoo;
     }
 
+
     public <T> T findOne(AnimalQuery<T> query) throws AnimalNotFoundException {
-        throw new UnsupportedOperationException("Not implemented yet");
+        for (Animal animal : zoo.getAnimals()) {
+            if (animal.getBreed().equals(query.getBreed())
+                    && animal.getName().equals(query.getName())) {
+                return (T) animal;
+            }
+        }
+        throw new AnimalNotFoundException();
     }
 }

@@ -5,6 +5,9 @@ package com.epam.zoo.core.search;
  */
 public class AnimalNotFoundException extends Exception {
 
+    public AnimalNotFoundException() {
+    }
+
     public AnimalNotFoundException(String message) {
         super(message);
     }
