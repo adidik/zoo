@@ -21,12 +21,6 @@ public class SearchEngineImpl implements SearchEngine {
 
 
     public <T> T findOne(AnimalQuery<T> query) throws AnimalNotFoundException {
-        for (Animal animal : zoo.getAnimals()) {
-            if (animal.getBreed().equals(query.getBreed())
-                    && animal.getName().equals(query.getName())) {
-                return (T) animal;
-            }
-        }
-        throw new AnimalNotFoundException();
+        throw new UnsupportedOperationException();
     }
 }
