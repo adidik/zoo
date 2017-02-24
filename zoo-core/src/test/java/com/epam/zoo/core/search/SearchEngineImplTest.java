@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class SearchEngineImplTest {
 
-    @Ignore
+
     @Test
     public void testFindOne() throws Exception {
         // GIVEN
@@ -31,7 +31,7 @@ public class SearchEngineImplTest {
         assertEquals(Breed.FOX, actual.getBreed());
     }
 
-    @Ignore
+
     @Test(expected = AnimalNotFoundException.class)
     public void testFindOneNotFound() throws Exception {
         // GIVEN

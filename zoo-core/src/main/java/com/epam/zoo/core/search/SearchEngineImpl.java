@@ -2,6 +2,7 @@ package com.epam.zoo.core.search;
 
 import com.epam.zoo.core.model.Animal;
 import com.epam.zoo.core.model.Zoo;
+import com.google.common.base.Objects;
 
 import javax.inject.Inject;
 
@@ -21,6 +22,25 @@ public class SearchEngineImpl implements SearchEngine {
 
 
     public <T> T findOne(AnimalQuery<T> query) throws AnimalNotFoundException {
-        throw new UnsupportedOperationException();
+        for (Animal animal : zoo.getAnimals()) {
+            if (isEqualsType(query, animal)
+                    && isEqualBreed(query, animal)
+                    && isEqualName(query, animal)) {
+                return (T) animal;
+            }
+        }
+        throw new AnimalNotFoundException();
+    }
+
+    private <T> boolean isEqualsType(AnimalQuery<T> query, Animal animal) {
+        return query.getType().equals(animal.getClass());
+    }
+
+    private <T> boolean isEqualName(AnimalQuery<T> query, Animal animal) {
+        return Objects.equal(query.getName(), animal.getName());
+    }
+
+    private <T> boolean isEqualBreed(AnimalQuery<T> query, Animal animal) {
+        return Objects.equal(query.getBreed(), animal.getBreed());
     }
 }
